@@ -355,14 +355,14 @@ else
             fclose(fileID);
         end 
         
-%         stage10OutputFileName = [inputFileName(1:end-4) '_stage10.tif'];%comment here when dng save tests. 
-%         system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -cs1 -tif '  stage10OutputFileName ' ' inputFileName];%comment here when dng save tests. 
-        stage10OutputFileName = [inputFileName(1:end-4) '_stage10_V3.dng']; %comment out here when dng save tests. 
-        system_command = ['.\dngOneExeSDK\dng_validate.exe -dng '  stage10OutputFileName ' ' inputFileName]; %comment out here when dng save tests. 
+        stage10OutputFileName = [inputFileName(1:end-4) '_stage10.tif'];%comment here when dng save tests. 
+        system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -cs1 -tif '  stage10OutputFileName ' ' inputFileName];%comment here when dng save tests. 
+%         stage10OutputFileName = [inputFileName(1:end-4) '_stage10_V3.dng']; %comment out here when dng save tests. 
+%         system_command = ['.\dngOneExeSDK\dng_validate.exe -dng '  stage10OutputFileName ' ' inputFileName]; %comment out here when dng save tests. 
         
         system(system_command);   
-%         handles.myData.image = imread(stage10OutputFileName);
-%         delete(stage10OutputFileName);        %comment here when dng save tests. 
+        handles.myData.image = imread(stage10OutputFileName);%comment here when dng save tests.
+        delete(stage10OutputFileName);        %comment here when dng save tests. 
         delete(my_waitbar)       % DELETE the waitbar; don't try to CLOSE it.
     end
 
