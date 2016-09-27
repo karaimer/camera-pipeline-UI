@@ -28,16 +28,16 @@ clear all
     fd1 = fopen('r.txt','r');
     fd2 = fopen('g.txt','r');
     fd3 = fopen('b.txt','r');
-    r = fread(fd1,[ 3008 1500], 'double');
+    r = fread(fd1,[ 3008 2000], 'double');
     fclose(fd1);
-    g = fread(fd2,[ 3008 1500], 'double');
+    g = fread(fd2,[ 3008 2000], 'double');
     fclose(fd2);
-    b = fread(fd3,[ 3008 1500], 'double');
+    b = fread(fd3,[ 3008 2000], 'double');
     fclose(fd3);
     
     
     
-image = zeros(1500, 3008, 3);
+image = zeros(2000, 3008, 3);
 image(:,:,1) = r';
 image(:,:,2) = g';
 image(:,:,3) = b';
