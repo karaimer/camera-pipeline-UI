@@ -44,17 +44,38 @@ image(:,:,3) = b';
 image = im2double(image);
 figure, imshow(image)
 
-%% proof that txt files and stage 4 size is not equal.
-% prophoto2 = im2double(imread('..\current_result.tif'));
-%center aligned
-eucliudian_error1 = sqrt((image(:,:,1)-...
-    image1(:,:,1)).^2 + ...
-    (image(:,:,2)-...
-    image1(:,:,2)).^2 + ...
-    (image(:,:,3)-...
-    image1(:,:,3)).^2);
-sum(eucliudian_error1(:))
-figure,
-imagesc(eucliudian_error1, [0 0.01]);
+% %% proof that txt files and stage 4 size is not equal.
+% % prophoto2 = im2double(imread('..\current_result.tif'));
+% %center aligned
+% eucliudian_error1 = sqrt((image(:,:,1)-...
+%     image1(:,:,1)).^2 + ...
+%     (image(:,:,2)-...
+%     image1(:,:,2)).^2 + ...
+%     (image(:,:,3)-...
+%     image1(:,:,3)).^2);
+% sum(eucliudian_error1(:))
+% figure,
+% imagesc(eucliudian_error1, [0 0.01]);
+% 
+% % abs()
+    currentfilename = ['stage4.tif'];
+    currentfilename = [currentfilename(1:end-4) '_wbd.tif'];
+    filename = currentfilename;
+    outputFileName = filename;
+    t = Tiff(outputFileName,'w');
+    image = uint16(image*65535);
+    output_unit16 = image;
 
-% abs()
+
+    tagstruct.ImageLength = size(output_unit16,1);
+    tagstruct.ImageWidth = size(output_unit16,2);
+    tagstruct.BitsPerSample = 16;
+    tagstruct.SamplesPerPixel = 3;
+    tagstruct.Photometric = Tiff.Photometric.RGB;
+    tagstruct.PlanarConfiguration = Tiff.PlanarConfiguration.Chunky;
+    tagstruct.Software = 'MATLAB';
+    t.setTag(tagstruct);
+    t.write(output_unit16);
+    t.close();
+
+
