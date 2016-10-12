@@ -59,7 +59,6 @@ figure, imshow(image)
 % 
 % % abs()
     currentfilename = ['stage4.tif'];
-    currentfilename = [currentfilename(1:end-4) '_wbd.tif'];
     filename = currentfilename;
     outputFileName = filename;
     t = Tiff(outputFileName,'w');
