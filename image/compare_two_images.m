@@ -1,9 +1,9 @@
 close all
 clear all
-image = im2double(imread('C:\Users\hakki\Downloads\camera-pipeline-dng-sdk-master\camera-pipeline-dng-sdk-master\camera-pipeline-UI-master\camera-pipeline-UI-master\current_result.tif'));
+image = im2double(imread('..\2.tif'));
 
 %% proof that txt files and stage 4 size is not equal.
-prophoto2 = im2double(imread('C:\Users\hakki\Downloads\camera-pipeline-UI-master\camera-pipeline-UI-master\current_result.tif'));
+prophoto2 = im2double(imread('..\3.tif'));
 %center aligned
 eucliudian_error1 = sqrt((image(:,:,1)-...
     prophoto2(:,:,1)).^2 + ...

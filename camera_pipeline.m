@@ -22,7 +22,7 @@ function varargout = camera_pipeline(varargin)
 
 % Edit the above text to modify the response to help camera_pipeline
 
-% Last Modified by GUIDE v2.5 20-Feb-2016 10:29:10
+% Last Modified by GUIDE v2.5 03-Nov-2016 22:15:06
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -147,6 +147,19 @@ else
     fileID = fopen('rwSettings.txt','w');
     fprintf(fileID,'%d\n',rwSettings);
     fclose(fileID);
+    
+    
+    
+    cam_settings = [0]; 
+    if (get(handles.radiobutton20,'Value') == 1)
+        cam_settings(1) = 1;
+    end
+    if ((get(handles.radiobutton20,'Value') == 0) && (get(handles.radiobutton19,'Value') == 0))
+        cam_settings(1) = 2;
+    end
+    fileID = fopen('cam_settings.txt','w');
+    fprintf(fileID,'%d\n',cam_settings);
+    fclose(fileID);    
 
     my_waitbar = waitbar(0, 'Rendering Image...');
     
@@ -605,3 +618,21 @@ function radiobutton17_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of radiobutton17
+
+
+% --- Executes on button press in radiobutton20.
+function radiobutton20_Callback(hObject, eventdata, handles)
+% hObject    handle to radiobutton20 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of radiobutton20
+
+
+% --- Executes on button press in radiobutton19.
+function radiobutton19_Callback(hObject, eventdata, handles)
+% hObject    handle to radiobutton19 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of radiobutton19
