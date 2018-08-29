@@ -77,7 +77,7 @@ handles.myData.winsize = winsize;
 %current stage in pipeline
 handles.myData.current_stage = zeros(1,1);
 
-pipeline_image = im2double(imread('.\Adobe_DNG_SDK_Pipeline_v4.bmp'));
+pipeline_image = im2double(imread(fullfile('.','Adobe_DNG_SDK_Pipeline_v4.bmp')));
 % set the slider range and step size
 numSteps = 11;
 set(handles.slider1, 'Min', 1);
@@ -166,7 +166,7 @@ else
     inputFileName = [pathname filename];
     if (handles.lastSliderVal == 1) 
         stage1OutputFileName = [inputFileName(1:end-4) '_stage1.tif'];
-        system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -1 '  stage1OutputFileName ' ' inputFileName];
+        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -16 -1 ') stage1OutputFileName ' ' inputFileName];
         system(system_command);   
         handles.myData.image = imread(stage1OutputFileName);
         %imtool(uint8(handles.myData.image/256))
@@ -193,7 +193,7 @@ else
         end 
         
         stage2OutputFileName = [inputFileName(1:end-4) '_stage2.tif'];
-        system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -2 '  stage2OutputFileName ' ' inputFileName];
+        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -16 -2 ')  stage2OutputFileName ' ' inputFileName];
         system(system_command);   
         handles.myData.image = imread(stage2OutputFileName);
         delete(stage2OutputFileName);
@@ -219,7 +219,7 @@ else
         end 
         
         stage3OutputFileName = [inputFileName(1:end-4) '_stage3.tif'];
-        system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -2 '  stage3OutputFileName ' ' inputFileName];
+        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -16 -2 ')  stage3OutputFileName ' ' inputFileName];
         system(system_command);   
         handles.myData.image = imread(stage3OutputFileName);
         delete(stage3OutputFileName);
@@ -238,12 +238,12 @@ else
             fileID = fopen('lastStage.txt','w');
             fprintf(fileID,'%d\n',a);
             fclose(fileID);
-            system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -cs1 -tif '  stage4OutputFileName ' ' inputFileName];
+            system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -16 -cs1 -tif ')  stage4OutputFileName ' ' inputFileName];
             system(system_command);   
             delete(stage4OutputFileName);
         end 
         
-        system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -3 '  stage4OutputFileName ' ' inputFileName];
+        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -16 -3 ')  stage4OutputFileName ' ' inputFileName];
         system(system_command);   
         handles.myData.image = imread(stage4OutputFileName);
         delete(stage4OutputFileName);
@@ -264,7 +264,7 @@ else
         end 
         %     
         stage5OutputFileName = [inputFileName(1:end-4) '_stage5.tif'];
-        system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -cs1 -tif '  stage5OutputFileName ' ' inputFileName];
+        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -16 -cs1 -tif ')  stage5OutputFileName ' ' inputFileName];
         system(system_command);   
         handles.myData.image = imread(stage5OutputFileName);
         delete(stage5OutputFileName);
@@ -285,7 +285,7 @@ else
         end 
 
         stage6OutputFileName = [inputFileName(1:end-4) '_stage6.tif'];
-        system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -cs1 -tif '  stage6OutputFileName ' ' inputFileName];
+        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -16 -cs1 -tif ')  stage6OutputFileName ' ' inputFileName];
         system(system_command);   
         handles.myData.image = imread(stage6OutputFileName);
         delete(stage6OutputFileName);   
@@ -306,7 +306,7 @@ else
         end 
 
         stage7OutputFileName = [inputFileName(1:end-4) '_stage7.tif'];
-        system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -cs1 -tif '  stage7OutputFileName ' ' inputFileName];
+        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -16 -cs1 -tif ') stage7OutputFileName ' ' inputFileName];
         system(system_command);   
         handles.myData.image = imread(stage7OutputFileName);
         delete(stage7OutputFileName);
@@ -327,7 +327,7 @@ else
         end 
 
         stage8OutputFileName = [inputFileName(1:end-4) '_stage8.tif'];
-        system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -cs1 -tif '  stage8OutputFileName ' ' inputFileName];
+        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -16 -cs1 -tif ') stage8OutputFileName ' ' inputFileName];
         system(system_command);   
         handles.myData.image = imread(stage8OutputFileName);
         delete(stage8OutputFileName);    
@@ -348,7 +348,7 @@ else
         end 
 
         stage9OutputFileName = [inputFileName(1:end-4) '_stage9.tif'];
-        system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -cs1 -tif '  stage9OutputFileName ' ' inputFileName];
+        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -16 -cs1 -tif ') stage9OutputFileName ' ' inputFileName];
         system(system_command);   
         handles.myData.image = imread(stage9OutputFileName);
         delete(stage9OutputFileName);        
@@ -369,9 +369,9 @@ else
         end 
         
         stage10OutputFileName = [inputFileName(1:end-4) '_stage10.tif'];%comment here when dng save tests. 
-        system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -cs1 -tif '  stage10OutputFileName ' ' inputFileName];%comment here when dng save tests. 
+        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -16 -cs1 -tif ') stage10OutputFileName ' ' inputFileName];%comment here when dng save tests. 
 %         stage10OutputFileName = [inputFileName(1:end-4) '_stage10_V3.dng']; %comment out here when dng save tests. 
-%         system_command = ['.\dngOneExeSDK\dng_validate.exe -dng '  stage10OutputFileName ' ' inputFileName]; %comment out here when dng save tests. 
+%         system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -dng ') stage10OutputFileName ' ' inputFileName]; %comment out here when dng save tests. 
         
         system(system_command);   
         handles.myData.image = imread(stage10OutputFileName);%comment here when dng save tests.
@@ -393,9 +393,9 @@ else
         end 
 
         stage11OutputFileName = [inputFileName(1:end-4) '_stage11.tif'];%comment here when dng save tests. 
-        system_command = ['.\dngOneExeSDK\dng_validate.exe -16 -cs1 -tif '  stage11OutputFileName ' ' inputFileName];%comment here when dng save tests. 
+        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe-16 -cs1 -tif ') stage11OutputFileName ' ' inputFileName];%comment here when dng save tests. 
 %         stage11OutputFileName = [inputFileName(1:end-4) '_stage11_V3.dng']; %comment out here when dng save tests. 
-%         system_command = ['.\dngOneExeSDK\dng_validate.exe -dng '  stage11OutputFileName ' ' inputFileName]; %comment out here when dng save tests. 
+%         system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -dng ') stage11OutputFileName ' ' inputFileName]; %comment out here when dng save tests. 
         system(system_command);   
         handles.myData.image = imread(stage11OutputFileName);
         delete(stage11OutputFileName);   %comment here when dng save tests. 
@@ -432,9 +432,9 @@ end
 set(handles.axes1, 'Position', [10, 100, hs - 20, ws - 20]);
 set(handles.pushbutton1, 'Parent', handles.uipanel1);
 axes(handles.axes1);
-% I(:,:,1) = I(:,:,1) ./ max(max(I(:,:,1)));
-% I(:,:,2) = I(:,:,2) ./ max(max(I(:,:,2)));
-% I(:,:,3) = I(:,:,3) ./ max(max(I(:,:,3)));
+% I(:,:,1) = I(:,:,1) fullfile('.', max(max(I(:,:,1)));
+% I(:,:,2) = I(:,:,2) fullfile('.', max(max(I(:,:,2)));
+% I(:,:,3) = I(:,:,3) fullfile('.', max(max(I(:,:,3)));
 imshow(I);
 % guidata(hObject, handles);
 
