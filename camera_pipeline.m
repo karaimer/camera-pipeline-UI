@@ -393,7 +393,7 @@ else
         end 
 
         stage11OutputFileName = [inputFileName(1:end-4) '_stage11.tif'];%comment here when dng save tests. 
-        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe-16 -cs1 -tif ') stage11OutputFileName ' ' inputFileName];%comment here when dng save tests. 
+        system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -16 -cs1 -tif ') stage11OutputFileName ' ' inputFileName];%comment here when dng save tests. 
 %         stage11OutputFileName = [inputFileName(1:end-4) '_stage11_V3.dng']; %comment out here when dng save tests. 
 %         system_command = [fullfile('.','dngOneExeSDK','dng_validate.exe -dng ') stage11OutputFileName ' ' inputFileName]; %comment out here when dng save tests. 
         system(system_command);   
